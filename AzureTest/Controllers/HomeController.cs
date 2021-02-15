@@ -2,23 +2,28 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using VetClinic.DAL.Entities;
+using VetClinic.DAL.Repositories.Interfaces;
 
 namespace AzureTest.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, IRepositoryWrapper repositoryWrapper)
         {
             _logger = logger;
+            _repositoryWrapper = repositoryWrapper;
         }
 
-        public IActionResult Index([FromServices] Animal animal)
+        public async Task<IActionResult> Index()
         {
-            animal.Name = "pes";
-            return View(animal);
+            AnimalType animalType =await _repositoryWrapper.AnimalTypeRepository.GetFirstOrDefaultAsync(x=>x.Id==1);
+            return View(animalType);
         }
 
         public IActionResult Privacy()
