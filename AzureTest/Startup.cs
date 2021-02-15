@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VetClinic.DAL.Entities;
 
 namespace AzureTest
 {
@@ -24,6 +25,7 @@ namespace AzureTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<Animal>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,11 +1,8 @@
 ﻿using AzureTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using VetClinic.DAL.Entities;
 
 namespace AzureTest.Controllers
 {
@@ -18,9 +15,10 @@ namespace AzureTest.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromServices] Animal animal)
         {
-            return View();
+            animal.Name = "pes";
+            return View(animal);
         }
 
         public IActionResult Privacy()
