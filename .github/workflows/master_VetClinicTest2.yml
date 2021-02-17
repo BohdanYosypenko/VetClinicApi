@@ -22,7 +22,7 @@ jobs:
         dotnet-version: '3.1.301'
 
     - name: Build with dotnet
-      run: dotnet build IdentityServerRoles --configuration Release
+      run: dotnet build --configuration Release
 
     - name: dotnet publish
       run: dotnet publish IdentityServerRoles -c Release -o ${{env.DOTNET_ROOT}}/myapp
